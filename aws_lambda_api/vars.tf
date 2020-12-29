@@ -1,5 +1,6 @@
 variable "api_domain" {
   description = "Domain on which the Lambda will be made available (e.g. `\"api.example.com\"`)"
+  default = "api.iamkaustav.com"
 }
 
 variable "name_prefix" {
@@ -14,6 +15,7 @@ variable "comment_prefix" {
 
 variable "function_zipfile" {
   description = "Path to a ZIP file that will be installed as the Lambda function (e.g. `\"my-api.zip\"`)"
+  default = "./one-liner-joke/dist/lambda.zip"
 }
 
 variable "function_s3_bucket" {
@@ -38,7 +40,7 @@ variable "memory_size" {
 
 variable "function_runtime" {
   description = "Which node.js version should Lambda use for this function"
-  default     = "nodejs8.10"
+  default     = "nodejs12.10"
 }
 
 variable "function_env_vars" {
@@ -52,7 +54,7 @@ variable "function_env_vars" {
 
 variable "stage_name" {
   description = "Name of the single stage created for the API on API Gateway"
-  default     = "default"
+  default     = "dev"
 }
 
 variable "lambda_logging_enabled" {
@@ -84,6 +86,11 @@ variable "throttling_rate_limit" {
 variable "throttling_burst_limit" {
   description = "How many burst requests should the API process at most; see https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html"
   default     = 5000
+}
+
+variable "region" {
+  description = ""
+  default = "us-east-1"
 }
 
 locals {
